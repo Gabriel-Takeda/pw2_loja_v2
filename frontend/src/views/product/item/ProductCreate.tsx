@@ -30,7 +30,6 @@ function ProductCreate() {
 
         if (error) {
             const errorsDetails: Record<string, string>= {}
-            // console.log(error.details)
             for (const errorDetail of error.details) {
                 errorsDetails[errorDetail.path[0]] = errorDetail.message
             }
@@ -46,17 +45,63 @@ function ProductCreate() {
     }
 
     return (
-        <>
-            <h1 className="text-2xl font-bold mb-2">Criação de Produto</h1>
-            <form method="post" onSubmit={handleSubmit}className="flex max-w-md flex-col gap-4">
-                <TextInput value={name} onChange={setName} error={errors['name']} name="name" label="Nome" focus required />
-                <TextInput value={price} onChange={setPrice} name="price" label="Preço" required />
-                <NumberInput value={stock} onChange={setStock} name="stock" label="Estoque" required />
-                <TextArea value={description} onChange={setDescription} name="description" label="Descrição" required />
-                <Button type="submit">Enviar</Button>
-            </form>
-        </>
-    )
+  <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-8">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+        Criação de Produto
+      </h1>
+
+      <form
+        method="post"
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5"
+      >
+        <TextInput
+          value={name}
+          onChange={setName}
+          error={errors["name"]}
+          name="name"
+          label="Nome"
+          focus
+          required
+        />
+
+        <TextInput
+          value={price}
+          onChange={setPrice}
+          name="price"
+          label="Preço"
+          required
+        />
+
+        <NumberInput
+          value={stock}
+          onChange={setStock}
+          name="stock"
+          label="Estoque"
+          required
+        />
+
+        <TextArea
+          value={description}
+          onChange={setDescription}
+          name="description"
+          label="Descrição"
+          required
+        />
+
+        <div className="pt-4">
+          <Button
+            type="submit"
+            className="w-full text-base font-semibold"
+          >
+            Cadastrar Produto
+          </Button>
+        </div>
+      </form>
+    </div>
+  </main>
+);
 }
 
 export default ProductCreate

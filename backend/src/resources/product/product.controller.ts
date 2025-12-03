@@ -24,7 +24,7 @@ const create = async (req: Request, res: Response) => {
         const product = req.body as CreateProductDTO;
 
         if( (await productAlreadyExists(product.name)) ) {
-            res.status(StatusCodes.CONFLICT).json({msg:"Nome de produto já existe", prod:product});
+            res.status(StatusCodes.CONFLICT).json({msg:"Product name already exist", prod:product});
         }
 
         else{
@@ -76,7 +76,7 @@ const update = async (req: Request, res: Response) => {
     }
 
     catch(e){
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: "Erro no update de objeto", e});
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: "Error in update object", e});
     }
 }
 
@@ -90,7 +90,7 @@ const remove = async (req: Request, res: Response) => {
         res.status(StatusCodes.OK).json(removedProduct);
     }
     catch(e){
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: "Erro ao remover o objeto", e});
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({msg: "Error on remove object", e});
 
     }
 
